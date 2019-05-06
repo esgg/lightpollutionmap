@@ -1,0 +1,498 @@
+[
+ {
+   "name": "stars19",
+   "mag_avg": 20.214668008,
+   "year": 2019,
+   "month": 3,
+   "latitude": 32.223877,
+   "longitude": -110.767532
+ },
+ {
+   "name": "stars18",
+   "mag_avg": 21.5279129321,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.0418,
+   "longitude": -1.0163
+ },
+ {
+   "name": "stars214",
+   "mag_avg": 19.46328,
+   "year": 2019,
+   "month": 3,
+   "latitude": -41.3050288,
+   "longitude": 174.783092
+ },
+ {
+   "name": "stars15",
+   "mag_avg": 20.6055686275,
+   "year": 2019,
+   "month": 3,
+   "latitude": 38.3149,
+   "longitude": -5.28355
+ },
+ {
+   "name": "stars32",
+   "mag_avg": 19.817721519,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.628752,
+   "longitude": -3.90066
+ },
+ {
+   "name": "stars34",
+   "mag_avg": 20.5859272727,
+   "year": 2019,
+   "month": 3,
+   "latitude": 69.3483333,
+   "longitude": 20.365
+ },
+ {
+   "name": "stars206",
+   "mag_avg": 21.8156198347,
+   "year": 2019,
+   "month": 3,
+   "latitude": -19.2582,
+   "longitude": 15.2624
+ },
+ {
+   "name": "stars205",
+   "mag_avg": 19.3739896373,
+   "year": 2019,
+   "month": 3,
+   "latitude": -17.78313898688363,
+   "longitude": 25.15920675135726
+ },
+ {
+   "name": "stars91",
+   "mag_avg": 21.4782107356,
+   "year": 2019,
+   "month": 3,
+   "latitude": 78.1482472,
+   "longitude": 16.0367348
+ },
+ {
+   "name": "stars272",
+   "mag_avg": 19.5787554269,
+   "year": 2019,
+   "month": 3,
+   "latitude": 39.0728056,
+   "longitude": -3.6092048
+ },
+ {
+   "name": "stars273",
+   "mag_avg": 19.5024743777,
+   "year": 2019,
+   "month": 3,
+   "latitude": 35.8767977,
+   "longitude": 14.395815
+ },
+ {
+   "name": "stars204",
+   "mag_avg": 21.1041176471,
+   "year": 2019,
+   "month": 3,
+   "latitude": -17.92819444,
+   "longitude": 25.81841667
+ },
+ {
+   "name": "stars218",
+   "mag_avg": 21.3141846758,
+   "year": 2019,
+   "month": 3,
+   "latitude": 39.10946,
+   "longitude": -6.6892
+ },
+ {
+   "name": "stars219",
+   "mag_avg": 21.5484745763,
+   "year": 2019,
+   "month": 3,
+   "latitude": -23.236357,
+   "longitude": 16.36177
+ },
+ {
+   "name": "stars250",
+   "mag_avg": 18.7063601533,
+   "year": 2019,
+   "month": 3,
+   "latitude": 41.6634453,
+   "longitude": -4.7059933
+ },
+ {
+   "name": "stars252",
+   "mag_avg": 18.9204928131,
+   "year": 2019,
+   "month": 3,
+   "latitude": 55.6992808,
+   "longitude": 36.7587089
+ },
+ {
+   "name": "stars239",
+   "mag_avg": 21.1947401909,
+   "year": 2019,
+   "month": 3,
+   "latitude": 43.9780846,
+   "longitude": 6.0178799
+ },
+ {
+   "name": "stars213",
+   "mag_avg": 21.74668,
+   "year": 2019,
+   "month": 3,
+   "latitude": 31.0435,
+   "longitude": -115.4641
+ },
+ {
+   "name": "stars232",
+   "mag_avg": 21.3196780303,
+   "year": 2019,
+   "month": 3,
+   "latitude": 39.3145,
+   "longitude": 16.7513
+ },
+ {
+   "name": "stars233",
+   "mag_avg": 19.2954750403,
+   "year": 2019,
+   "month": 3,
+   "latitude": 38.9070827,
+   "longitude": -6.3386659
+ },
+ {
+   "name": "stars230",
+   "mag_avg": 21.5433240223,
+   "year": 2019,
+   "month": 3,
+   "latitude": -41.2359161,
+   "longitude": 175.4389767
+ },
+ {
+   "name": "stars201",
+   "mag_avg": 20.9858868895,
+   "year": 2019,
+   "month": 3,
+   "latitude": 38.7554517394512,
+   "longitude": -6.98450848343236
+ },
+ {
+   "name": "stars40",
+   "mag_avg": 17.9772972973,
+   "year": 2019,
+   "month": 3,
+   "latitude": 41.1774241,
+   "longitude": -8.6059636
+ },
+ {
+   "name": "stars41",
+   "mag_avg": 18.28,
+   "year": 2019,
+   "month": 3,
+   "latitude": 41.1774241,
+   "longitude": -8.6059636
+ },
+ {
+   "name": "stars24",
+   "mag_avg": 20.8918336887,
+   "year": 2019,
+   "month": 3,
+   "latitude": 27.90083333,
+   "longitude": -15.51472222
+ },
+ {
+   "name": "stars47",
+   "mag_avg": 17.9391778203,
+   "year": 2019,
+   "month": 3,
+   "latitude": 45.40269444,
+   "longitude": 11.884872
+ },
+ {
+   "name": "stars48",
+   "mag_avg": 18.5495126354,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.406135,
+   "longitude": -3.8385415
+ },
+ {
+   "name": "stars60",
+   "mag_avg": 21.3433374083,
+   "year": 2019,
+   "month": 3,
+   "latitude": 45.734626,
+   "longitude": -71.676243
+ },
+ {
+   "name": "stars66",
+   "mag_avg": 21.4962260536,
+   "year": 2019,
+   "month": 3,
+   "latitude": 39.78058,
+   "longitude": -6.0163
+ },
+ {
+   "name": "stars28",
+   "mag_avg": 19.5689377289,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.5986998,
+   "longitude": -3.1579743
+ },
+ {
+   "name": "stars231",
+   "mag_avg": 20.4105660377,
+   "year": 2019,
+   "month": 3,
+   "latitude": 47.287592,
+   "longitude": 8.61902
+ },
+ {
+   "name": "stars89",
+   "mag_avg": 21.7875277778,
+   "year": 2019,
+   "month": 3,
+   "latitude": 30.534095,
+   "longitude": -98.905275
+ },
+ {
+   "name": "stars84",
+   "mag_avg": 18.5041860465,
+   "year": 2019,
+   "month": 3,
+   "latitude": 42.4666667,
+   "longitude": -2.43972222
+ },
+ {
+   "name": "stars85",
+   "mag_avg": 18.3157334526,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.45098,
+   "longitude": -3.726072
+ },
+ {
+   "name": "stars86",
+   "mag_avg": 21.6131004367,
+   "year": 2019,
+   "month": 3,
+   "latitude": 64.209031,
+   "longitude": 18.849575
+ },
+ {
+   "name": "stars27",
+   "mag_avg": 21.6957268722,
+   "year": 2019,
+   "month": 3,
+   "latitude": 31.2060587,
+   "longitude": -7.8687202
+ },
+ {
+   "name": "stars81",
+   "mag_avg": 16.2953370787,
+   "year": 2019,
+   "month": 3,
+   "latitude": 43.34756,
+   "longitude": -4.0595487
+ },
+ {
+   "name": "stars243",
+   "mag_avg": 19.4923684211,
+   "year": 2019,
+   "month": 3,
+   "latitude": 50.8581441,
+   "longitude": 5.8364116
+ },
+ {
+   "name": "stars288",
+   "mag_avg": 21.1897902098,
+   "year": 2019,
+   "month": 3,
+   "latitude": 38.21969167,
+   "longitude": -6.63175556
+ },
+ {
+   "name": "stars203",
+   "mag_avg": 17.8435322196,
+   "year": 2019,
+   "month": 3,
+   "latitude": -33.92109,
+   "longitude": 18.42043
+ },
+ {
+   "name": "stars242",
+   "mag_avg": 20.4696938776,
+   "year": 2019,
+   "month": 3,
+   "latitude": 52.8128195,
+   "longitude": 6.3959548
+ },
+ {
+   "name": "stars221",
+   "mag_avg": 21.5587821229,
+   "year": 2019,
+   "month": 3,
+   "latitude": -31.7986065,
+   "longitude": -69.2977443
+ },
+ {
+   "name": "stars215",
+   "mag_avg": 20.3777112676,
+   "year": 2019,
+   "month": 3,
+   "latitude": -38.27298056,
+   "longitude": 145.04153611
+ },
+ {
+   "name": "stars225",
+   "mag_avg": 20.1275910931,
+   "year": 2019,
+   "month": 3,
+   "latitude": 41.474,
+   "longitude": -1.4821
+ },
+ {
+   "name": "stars224",
+   "mag_avg": 17.8435947712,
+   "year": 2019,
+   "month": 3,
+   "latitude": 36.683966,
+   "longitude": -6.1128293
+ },
+ {
+   "name": "stars9",
+   "mag_avg": 20.0907719928,
+   "year": 2019,
+   "month": 3,
+   "latitude": 38.409226,
+   "longitude": -4.894376
+ },
+ {
+   "name": "stars226",
+   "mag_avg": 17.6969312169,
+   "year": 2019,
+   "month": 3,
+   "latitude": 41.6226,
+   "longitude": -0.9315
+ },
+ {
+   "name": "stars7",
+   "mag_avg": 18.4911111111,
+   "year": 2019,
+   "month": 3,
+   "latitude": 42.81732,
+   "longitude": -1.64543
+ },
+ {
+   "name": "stars202",
+   "mag_avg": 21.750608365,
+   "year": 2019,
+   "month": 3,
+   "latitude": 39.3228671066554,
+   "longitude": -4.95050494907377
+ },
+ {
+   "name": "stars5",
+   "mag_avg": 18.1236144578,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.45098,
+   "longitude": -3.726072
+ },
+ {
+   "name": "stars8",
+   "mag_avg": 21.026007326,
+   "year": 2019,
+   "month": 3,
+   "latitude": 42.71167,
+   "longitude": -1.86509
+ },
+ {
+   "name": "stars2",
+   "mag_avg": 21.3941818182,
+   "year": 2019,
+   "month": 3,
+   "latitude": 41.0012989,
+   "longitude": -2.492408
+ },
+ {
+   "name": "stars1",
+   "mag_avg": 18.3849122807,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.4246043,
+   "longitude": -3.560279
+ },
+ {
+   "name": "stars62",
+   "mag_avg": 21.597214886,
+   "year": 2019,
+   "month": 3,
+   "latitude": 42.024592,
+   "longitude": 0.7347973
+ },
+ {
+   "name": "stars52",
+   "mag_avg": 18.7809318996,
+   "year": 2019,
+   "month": 3,
+   "latitude": 36.87928471,
+   "longitude": -2.43834458
+ },
+ {
+   "name": "stars51",
+   "mag_avg": 18.1169068541,
+   "year": 2019,
+   "month": 3,
+   "latitude": 40.4180168,
+   "longitude": -3.5530164
+ },
+ {
+   "name": "stars64",
+   "mag_avg": 19.9176699029,
+   "year": 2019,
+   "month": 3,
+   "latitude": 45.0510358,
+   "longitude": 10.9197606
+ },
+ {
+   "name": "stars54",
+   "mag_avg": 21.9045738046,
+   "year": 2019,
+   "month": 3,
+   "latitude": -31.2749041,
+   "longitude": 149.0682942
+ },
+ {
+   "name": "stars76",
+   "mag_avg": 17.1145698925,
+   "year": 2019,
+   "month": 3,
+   "latitude": 39.478898,
+   "longitude": -0.376524
+ },
+ {
+   "name": "stars71",
+   "mag_avg": 19.094375,
+   "year": 2019,
+   "month": 3,
+   "latitude": 43.5681472,
+   "longitude": 1.327194444
+ },
+ {
+   "name": "stars70",
+   "mag_avg": 21.6133333333,
+   "year": 2019,
+   "month": 3,
+   "latitude": 28.5258381,
+   "longitude": -14.0050689
+ },
+ {
+   "name": "stars92",
+   "mag_avg": 18.8041200828,
+   "year": 2019,
+   "month": 3,
+   "latitude": 42.637673,
+   "longitude": 23.295422
+ }
+]
