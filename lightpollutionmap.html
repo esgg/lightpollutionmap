@@ -20,21 +20,36 @@
         top: 80px;
       }
       .custom-control {
-        top: 10px;
-        right: 10px;
         width: 32px;
         height: 32px;
-        cursor:pointer;
-        background: no-repeat url('assets/icons/moon-and-stars.png')
+        cursor:pointer
       }
-      .night-layer-disable{filter:opacity(.4);cursor:pointer}
-      .night-layer-enable{filter:opacity(1);cursor:crosshair}
+      .night-layer-disable{top:10px;right:90px;background: no-repeat url('assets/icons/satellite.png');filter: opacity(.7)}
+      .night-layer-enable{top:10px;right:90px;background: no-repeat url('assets/icons/satellite_white.png');filter: opacity(.7)}
 
-      .custom-control:hover {filter: opacity(.7)}
+      .tutorial-night-layer-disable{top:10px;right:10px;background: no-repeat url('assets/icons/tutorial.png')}
+      .tutorial-night-layer-enable{top:10px;right:10px;background: no-repeat url('assets/icons/tutorial_white.png')}
 
+      .tutorial-layer-disable{filter: opacity(.5)}
+      .tutorial-layer-enable{filter: opacity(1)}
+
+      .dsm-night-layer-disable{top:10px;right:50px;background: no-repeat url('assets/icons/mobile-phone.png')}
+      .dsm-night-layer-enable{top:10px;right:50px;background: no-repeat url('assets/icons/mobile-phone-white.png')}
+
+      .dsm-layer-disable{filter: opacity(.5)}
+      .dsm-layer-enable{filter: opacity(1)}
+
+      .custom-control:hover {filter: opacity(1)}
+
+      .tutorial-arrow-right{background: no-repeat url('assets/icons/right-arrow.png')}
+
+      .popover{
+        max-width:100%;
+      }
       .popover-content{
         background-color: white;
-        width:350px;
+         max-width:350px;
+        /* width:350px; */
       }
 
     </style>
@@ -47,10 +62,11 @@
     <title>OpenLayers example</title>
   </head>
   <body>
-    <h2>My Map</h2>
-    <div id="map" class="map"><div id="popup"></div></div>
+
     <div>Icons made by <a href="https://www.freepik.com/?__hstc=57440181.341bf4a8c44f38f213cd9e6d1fbe4c38.1556627788500.1556627788500.1556627788500.1&__hssc=57440181.2.1556627788501&__hsfp=3487124377" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-    <script type="text/javascript">
+
+    <div id="map" class="map"><div id="popup"></div><div id="popup_tutorial" style="position:relative;top:100px;"></div></div>
+      <script type="text/javascript">
 
     var iconStyle = new ol.style.Style({
        image: new ol.style.Icon(/** @type {module:ol/style/Icon~Options} */ ({
@@ -63,6 +79,10 @@
 
       var iconFeature = new ol.Feature(new ol.geom.Point([0, 0]));
       iconFeature.setStyle(iconStyle);
+
+      //Light Pollution data source
+
+      //Satellite images from VIIRS
 
       var sourceViirs = new ol.source.WMTS({
           urls: [
@@ -92,10 +112,14 @@
       });
       var viirs = new ol.layer.Tile({source: sourceViirs, visible:false});
 
+      //OSM layer
+
       var osm = new ol.layer.Tile({
         source: new ol.source.OSM(),
       });
 
+
+      //TESS photometers Data
 
       var tess = new ol.layer.Vector({
         style: function(feature) {
@@ -104,12 +128,27 @@
         source: new ol.source.Vector({features: [iconFeature]})
       });
 
+      //Data from Dark Sky Meter application
+
+      var dsm_vector = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          url: 'assets/kml/dsm-2018.kml',
+          format: new ol.format.KML()
+        }),
+        visible:false
+      });
+
       var container = document.getElementById('map');
 
-      var radius = 75;
 
       var showTessLayerControl = function(opt_options) {
         var element = document.createElement('div');
+
+        var att = document.createAttribute("title");       // Create a "class" attribute
+        att.value = "Show satellite image from VIIRS";
+
+        element.setAttributeNode(att);
+
         element.className = 'custom-control night-layer-disable ol-unselectable ol-control';
         ol.control.Control.call(this, {
           element: element
@@ -119,10 +158,29 @@
             element.classList.remove("night-layer-enable")
             element.classList.add("night-layer-disable")
             viirs.set("visible",false);
+            element.setAttribute("title","Show satellite image from VIIRS")
+
+            var dsm_element = document.getElementById("dsm_control")
+            dsm_element.classList.remove("dsm-night-layer-enable");
+            dsm_element.classList.add("dsm-night-layer-disable");
+
+            var tutorial_element = document.getElementById("tutorial_control")
+            tutorial_element.classList.remove("tutorial-night-layer-enable");
+            tutorial_element.classList.add("tutorial-night-layer-disable");
+
           }else if (element.classList.contains("night-layer-disable")) {
             viirs.set("visible",true);
             element.classList.remove("night-layer-disable")
             element.classList.add("night-layer-enable")
+            element.setAttribute("title","Hide satellite image from VIIRS")
+
+            var dsm_element = document.getElementById("dsm_control")
+            dsm_element.classList.remove("dsm-night-layer-disable");
+            dsm_element.classList.add("dsm-night-layer-enable");
+
+            var tutorial_element = document.getElementById("tutorial_control")
+            tutorial_element.classList.remove("tutorial-night-layer-disable");
+            tutorial_element.classList.add("tutorial-night-layer-enable");
           }
 
         },false);
@@ -130,20 +188,84 @@
       };
       ol.inherits(showTessLayerControl, ol.control.Control);
 
+      var showTutorialControl = function(opt_options) {
+        var element = document.createElement('div');
+
+        var att = document.createAttribute("title");       // Create a "class" attribute
+        att.value = "Show tutorial";
+
+        element.setAttributeNode(att);
+
+        element.setAttribute('id','tutorial_control');
+
+        element.className = 'custom-control tutorial-night-layer-disable tutorial-layer-disable ol-unselectable ol-control';
+        ol.control.Control.call(this, {
+          element: element
+        });
+        element.addEventListener('click', function (evt){
+
+          if (element.classList.contains("tutorial-layer-enable")){
+            element.classList.remove("tutorial-layer-enable");
+            element.classList.add("tutorial-layer-disable");
+            $(element_tutorial).popover('hide');
+            element_tutorial.setAttribute("title","Show tutorial");
+          }else if (element.classList.contains("tutorial-layer-disable")) {
+            tutorial_index = 0;
+            element.classList.remove("tutorial-layer-disable")
+            element.classList.add("tutorial-layer-enable")
+            element.setAttribute("title","Hide tutorial")
+            $(element_tutorial).popover('show');
+          }
+        },false);
+
+      };
+      ol.inherits(showTutorialControl, ol.control.Control);
+
+      var showDSMControl = function(opt_options) {
+        var element = document.createElement('div');
+
+        var att = document.createAttribute("title");       // Create a "class" attribute
+        att.value = "Show DSM measurements";
+
+        element.setAttributeNode(att);
+
+        element.setAttribute('id','dsm_control');
+
+        element.className = 'custom-control dsm-night-layer-disable dsm-layer-disable ol-unselectable ol-control';
+        ol.control.Control.call(this, {
+          element: element
+        });
+        element.addEventListener('click', function (evt){
+          if (element.classList.contains("dsm-layer-enable")){
+            element.classList.remove("dsm-layer-enable");
+            element.classList.add("dsm-layer-disable");
+            dsm_vector.set("visible",false);
+            element.setAttribute("title","Show measurements of DSM");
+          }else if (element.classList.contains("dsm-layer-disable")) {
+            element.classList.remove("dsm-layer-disable")
+            element.classList.add("dsm-layer-enable")
+            element.setAttribute("title","Hide measurements of DSM")
+            dsm_vector.set("visible",true);
+          }
+        },false);
+
+      };
+      ol.inherits(showDSMControl, ol.control.Control);
+
       var view = new ol.View({
         projection: ol.proj.get("EPSG:4326"),
         extent: [-180, -90, 180, 90],
         center: [0,0],
         zoom: 2
-      }),
+      });
 
 
       //load VIIRS help map
       map = new ol.Map({
         target: 'map',
-        controls: [new showTessLayerControl],
+        controls: [new showTessLayerControl, new showDSMControl, new showTutorialControl],
         layers: [
-          osm,viirs,tess
+          osm,viirs,dsm_vector,tess
         ],
         view: view,
         loadTilesWhileAnimating: true
@@ -168,6 +290,78 @@
         content:'<div id="tess_name">name</div><div><canvas width="350px" height="60px" id="cv"></canvas></div>'
       });
 
+      var element_tutorial = document.getElementById('popup_tutorial');
+
+      var tutorial_index = 0;
+
+      var tutorial_string = [];
+
+      tutorial_string[0]= '<p>Welcome to the map tutorial.' +
+                'In this map, you can get information from three different sources:'+
+                '<ul><li>Satellite Images (VIIRS)</li>'+
+                '<li>TESS photometer network</li>'+
+                '<li>Dark Sky Meter application</li></ul>'+
+                '</p>';
+      tutorial_string[1]= '<p>You can see in the map the location of each TESS photometer.'+
+                          'If you click in the icon, you can see the average sky brightness measured by this photometer'+
+                          'in the last month.</p>'+
+                          '<p>For this calculation we can take into account the cloudiness and the moon phase.'+
+                          'According to IDA, we can define different classes of sky in function of the sky brightness</p>'+
+                          '<ul><li>Urban sky: 18 - 19.1</li>'+
+                          '<li>Suburban sky: 19.10 - 21.1</li>'+
+                          '<li>Rural sky: 21.30 - 21.50</li>'+
+                          '<li>Excelent sky: > 21.90</li></ul>';
+
+    tutorial_string[2]= '<p>You can activate a night layer with an image generated by the VIIRS instrument.'+
+                          'You can see in this layer the radiance of different locations. You can appreciate'+
+                          'in the map human settlements (cities, industries, etc ...). Combined with the photometers'+
+                          'you will be able to see the impact of light pollution on these areas'+
+                          '</p>';
+
+      tutorial_string[3]= '<p>Finally, you can visualize in the map the observations made by citizens '+
+                          'with the application Dark Sky Meter, reporting the visible stars in the sky.'+
+                          'In this way, you can compare this measurement (more subjective) with more objective data'+
+                          'such as satellite images and photometers.'
+                          '</p>';
+
+      /*
+      var popup_tutorial = new ol.Overlay({
+        element: element_tutorial,
+        positioning: 'bottom-center',
+        stopEvent: false,
+        offset: [0, -50]
+      });
+      console.log("Overlay:"+popup_tutorial);
+      map.addOverlay(popup_tutorial);
+
+      $(element_tutorial).popover({
+        placement:'auto',
+        html: true,
+        content:'<h1>cosas</h1>'
+      });*/
+
+
+      $(element_tutorial).popover({
+        placement:'auto',
+        container: 'body',
+        html: true,
+        title: 'Tutorial',
+        content:'<div id="tutorial_text">'+tutorial_string[tutorial_index]+'</div>'+
+                '<img id="arrow_previous" style="visibility:hidden" onclick="view_tutorial(\'previous\')" align="left" src="assets/icons/left-arrow.png"></img>'+
+                '<img id="arrow_next" onclick="view_tutorial(\'next\')" align="right" src="assets/icons/right-arrow.png"></img>'
+      });
+
+
+/*
+      $("#tutorial_next").bind('click', function(){
+        console("bind next");
+        tutorial_index = tutorial_index+1;
+        document.getElementById("tutorial_text").innerHTML = tutorial_string[tutorial_index];
+      });
+*/
+      //$(element_tutorial).popover('show');
+
+
       //draw_color_range();
      // display popup on click
 
@@ -177,61 +371,29 @@
             return feature;
           });
         if (feature) {
-          var coordinates = feature.getGeometry().getCoordinates();
-          popup.setPosition(coordinates);
+          if (feature.get('name')!=null){
+            var coordinates = feature.getGeometry().getCoordinates();
+            popup.setPosition(coordinates);
 
-          //draw_magnitude(feature.get('mag'));
+            //draw_magnitude(feature.get('mag'));
 
-          //var popup_string = $(element).data('bs.popover').options.content;
+            //var popup_string = $(element).data('bs.popover').options.content;
 
-          //$(element).data('bs.popover').options.content = "<h3>"+feature.get('name')+"</h3><div><canvas width='350' height='60' id='cv'></canvas></div>";
-          //draw_color_range();
-          //draw_magnitude(feature.get('mag'));
+            //$(element).data('bs.popover').options.content = "<h3>"+feature.get('name')+"</h3><div><canvas width='350' height='60' id='cv'></canvas></div>";
+            //draw_color_range();
+            //draw_magnitude(feature.get('mag'));
 
 
-          $(element).popover('show');
-          draw_magnitude(feature.get('mag'));
-          document.getElementById("tess_name").innerHTML = feature.get('name');
+            $(element).popover('show');
 
+            draw_magnitude(feature.get('mag'));
+            document.getElementById("tess_name").innerHTML = feature.get('name');
+          } else {
+            console.log("DSM value")
+          }
         } else {
           $(element).popover('hide');
         }
-      });
-
-      // get the pixel position with every move
-      var mousePosition = null;
-
-      container.addEventListener('mousemove', function(event) {
-        mousePosition = map.getEventPixel(event);
-        map.render();
-      });
-
-      container.addEventListener('mouseout', function() {
-        mousePosition = null;
-        map.render();
-      });
-
-      // before rendering the layer, do some clipping
-      viirs.on('precompose', function(event) {
-        var ctx = event.context;
-        var pixelRatio = event.frameState.pixelRatio;
-        ctx.save();
-        ctx.beginPath();
-        if (mousePosition) {
-          // only show a circle around the mouse
-          ctx.arc(mousePosition[0] * pixelRatio, mousePosition[1] * pixelRatio,
-            radius * pixelRatio, 0, 2 * Math.PI);
-          ctx.lineWidth = 5 * pixelRatio;
-          ctx.strokeStyle = 'rgba(0,0,0,0.5)';
-          ctx.stroke();
-        }
-        ctx.clip();
-      });
-
-      // after rendering the layer, restore the canvas context
-      viirs.on('postcompose', function(event) {
-        var ctx = event.context;
-        ctx.restore();
       });
 
       $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
@@ -239,6 +401,31 @@
       });
 
       readJson("lpm-2019-03.json");
+
+      function view_tutorial(step){
+        if (step == "next"){
+          tutorial_index = tutorial_index+1;
+
+          document.getElementById("tutorial_text").innerHTML = tutorial_string[tutorial_index];
+
+
+        }else if (step == "previous"){
+          tutorial_index = tutorial_index-1;
+          document.getElementById("tutorial_text").innerHTML = tutorial_string[tutorial_index];
+        }
+        if (tutorial_index == 3){
+          console.log("No hay mas");
+          document.getElementById("arrow_next").style.visibility = 'hidden';
+          document.getElementById("arrow_previous").style.visibility = 'visible';
+        } else if (tutorial_index == 0){
+          document.getElementById("arrow_previous").style.visibility = 'hidden';
+          document.getElementById("arrow_next").style.visibility = 'visible';
+        } else {
+          document.getElementById("arrow_previous").style.visibility = 'visible';
+          document.getElementById("arrow_next").style.visibility = 'visible';
+        }
+
+      }
 
 
       function readJson(file) {
@@ -265,7 +452,6 @@
                 tessFeature.setStyle(iconStyle);
 
                 tess_source.addFeature(tessFeature);
-
 
 
               }
