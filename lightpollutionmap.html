@@ -44,11 +44,11 @@
       .tutorial-arrow-right{background: no-repeat url('assets/icons/right-arrow.png')}
 
       .popover{
-        max-width:100%;
+        /*max-width:100%;*/
+        min-width:360px;
       }
       .popover-content{
         background-color: white;
-         max-width:350px;
         /* width:350px; */
       }
 
@@ -65,7 +65,7 @@
 
     <div>Icons made by <a href="https://www.freepik.com/?__hstc=57440181.341bf4a8c44f38f213cd9e6d1fbe4c38.1556627788500.1556627788500.1556627788500.1&__hssc=57440181.2.1556627788501&__hsfp=3487124377" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-    <div id="map" class="map"><div id="popup"></div><div id="popup_tutorial" style="position:relative;top:100px;"></div></div>
+    <div id="map" class="map"><div id="popup" style="width:400px;"></div><div id="popup_tutorial" style="position:relative;top:100px;"></div></div>
       <script type="text/javascript">
 
     var iconStyle = new ol.style.Style({
@@ -208,7 +208,7 @@
             element.classList.remove("tutorial-layer-enable");
             element.classList.add("tutorial-layer-disable");
             $(element_tutorial).popover('hide');
-            element_tutorial.setAttribute("title","Show tutorial");
+            element.setAttribute("title","Show tutorial");
           }else if (element.classList.contains("tutorial-layer-disable")) {
             tutorial_index = 0;
             element.classList.remove("tutorial-layer-disable")
@@ -286,8 +286,10 @@
 
       $(element).popover({
         placement:'auto',
+        container:'#popup',
         html: true,
-        content:'<div id="tess_name">name</div><div><canvas width="350px" height="60px" id="cv"></canvas></div>'
+        title: 'title',
+        content:'<div id="sky_type">Type of sky:</div><div><canvas width="350px" height="60px" id="cv"></canvas></div>'
       });
 
       var element_tutorial = document.getElementById('popup_tutorial');
@@ -383,11 +385,26 @@
             //draw_color_range();
             //draw_magnitude(feature.get('mag'));
 
-
+            $('#popup').attr('data-original-title', feature.get('name'));
             $(element).popover('show');
 
+            var magnitude = parseFloat(feature.get('mag'));
+            if (magnitude < 18){
+              document.getElementById("sky_type").innerHTML = "Type of sky: Highly polluted sky";
+            }
+            else if (magnitude >= 18 && magnitude < 19.1){
+              document.getElementById("sky_type").innerHTML = "Type of sky: Urban";
+            } else if (magnitude >= 19.1 && magnitude < 21.1){
+              document.getElementById("sky_type").innerHTML = "Type of sky: Suburban sky";
+            }else if (magnitude >= 21.1 && magnitude < 21.5){
+              document.getElementById("sky_type").innerHTML = "Type of sky: Rural sky";
+            }else if (magnitude >21.5){
+              document.getElementById("sky_type").innerHTML = "Type of sky: Excelent sky";
+            }
+
             draw_magnitude(feature.get('mag'));
-            document.getElementById("tess_name").innerHTML = feature.get('name');
+
+            //document.getElementById("tess_name").innerHTML = feature.get('name');
           } else {
             console.log("DSM value")
           }
